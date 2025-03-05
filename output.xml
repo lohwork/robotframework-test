@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.2 on win32)" generated="2025-03-05T15:25:20.800538" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\robot-demo\tests">
+<suite id="s1-s1" name="Api Tests" source="C:\robot-demo\tests\api_tests.robot">
+<test id="s1-s1-t1" name="Verify User Details API" line="9">
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-03-05T15:25:22.122613" level="INFO">GET Request : url=https://jsonplaceholder.typicode.com/users/1 
+ path_url=/users/1 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-03-05T15:25:22.123554" level="INFO">GET Response : url=https://jsonplaceholder.typicode.com/users/1 
+ status=200, reason=OK 
+ headers={'Date': 'Wed, 05 Mar 2025 07:25:21 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1741159355&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;s=rrvXdLjGsUkl%2F%2BNJ6MuNUCfkC7H6m6xG%2FMFIsswc2A0%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1741159355&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;s=rrvXdLjGsUkl%2F%2BNJ6MuNUCfkC7H6m6xG%2FMFIsswc2A0%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'X-Ratelimit-Limit': '1000', 'X-Ratelimit-Remaining': '999', 'X-Ratelimit-Reset': '1741159361', 'Vary': 'Origin, Accept-Encoding', 'Access-Control-Allow-Credentials': 'true', 'Cache-Control': 'max-age=43200', 'Pragma': 'no-cache', 'Expires': '-1', 'X-Content-Type-Options': 'nosniff', 'Etag': 'W/"1fd-+2Y3G3w049iSZtw5t1mzSnunngE"', 'Via': '1.1 vegur', 'Age': '165', 'cf-cache-status': 'HIT', 'Server': 'cloudflare', 'CF-RAY': '91b7e0ffa9ee3c4b-KUL', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=17072&amp;min_rtt=16145&amp;rtt_var=6717&amp;sent=5&amp;recv=6&amp;lost=0&amp;retrans=0&amp;sent_bytes=2840&amp;recv_bytes=785&amp;delivery_rate=252709&amp;cwnd=252&amp;unsent_bytes=0&amp;cid=77501d90dfa174c5&amp;ts=37&amp;x=0"'} 
+ body={
+  "id": 1,
+  "name": "Leanne Graham",
+  "username": "Bret",
+  "email": "Sincere@april.biz",
+  "address": {
+    "street": "Kulas Light",
+    "suite": "Apt. 556",
+    "city": "Gwenborough",
+    "zipcode": "92998-3874",
+    "geo": {
+      "lat": "-37.3159",
+      "lng": "81.1496"
+    }
+  },
+  "phone": "1-770-736-8031 x56442",
+  "website": "hildegard.org",
+  "company": {
+    "name": "Romaguera-Crona",
+    "catchPhrase": "Multi-layered client-server neural-net",
+    "bs": "harness real-time e-markets"
+  }
+} 
+ </msg>
+<msg time="2025-03-05T15:25:22.124249" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/users/1</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.009571" elapsed="0.114842"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-03-05T15:25:22.128677" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.125902" elapsed="0.003181"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-05T15:25:22.135582" level="INFO">${json_data} = {'id': 1, 'name': 'Leanne Graham', 'username': 'Bret', 'email': 'Sincere@april.biz', 'address': {'street': 'Kulas Light', 'suite': 'Apt. 556', 'city': 'Gwenborough', 'zipcode': '92998-3874', 'geo': {'...</msg>
+<var>${json_data}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.132078" elapsed="0.003661"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json_data}</arg>
+<arg>name</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.137107" elapsed="0.000709"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json_data}</arg>
+<arg>email</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.138658" elapsed="0.000824"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-05T15:25:22.146084" level="INFO">{'id': 1, 'name': 'Leanne Graham', 'username': 'Bret', 'email': 'Sincere@april.biz', 'address': {'street': 'Kulas Light', 'suite': 'Apt. 556', 'city': 'Gwenborough', 'zipcode': '92998-3874', 'geo': {'lat': '-37.3159', 'lng': '81.1496'}}, 'phone': '1-770-736-8031 x56442', 'website': 'hildegard.org', 'company': {'name': 'Romaguera-Crona', 'catchPhrase': 'Multi-layered client-server neural-net', 'bs': 'harness real-time e-markets'}}</msg>
+<arg>${json_data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.145433" elapsed="0.000851"/>
+</kw>
+<status status="PASS" start="2025-03-05T15:25:22.007952" elapsed="0.139033"/>
+</test>
+<status status="PASS" start="2025-03-05T15:25:20.865559" elapsed="1.283559"/>
+</suite>
+<suite id="s1-s2" name="Db Tests" source="C:\robot-demo\tests\db_tests.robot">
+<test id="s1-s2-t1" name="Verify Order Exists" line="11">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2025-03-05T15:25:22.224412" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2025-03-05T15:25:22.224631" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2025-03-05T15:25:22.278225" level="INFO">Connect to DB using : pymysql.connect(db='testdb', user='root', passwd=***, host='localhost', port=3306, charset='utf8mb4')</msg>
+<arg>pymysql</arg>
+<arg>${DBNAME}</arg>
+<arg>${DBUSER}</arg>
+<arg>${DBPASS}</arg>
+<arg>${DBHOST}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.223814" elapsed="0.087848"/>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2025-03-05T15:25:22.315884" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT * FROM orders WHERE customer_name='John Doe'&lt;/code&gt;</msg>
+<msg time="2025-03-05T15:25:22.330324" level="INFO">Commit the transaction</msg>
+<msg time="2025-03-05T15:25:22.335258" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="color:black; background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;id&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;customer_name&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;product&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;quantity&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: var(--secondary-color, #eee)"&gt;&lt;th scope="row" style="color:black; background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;John Doe&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Laptop&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2025-03-05T15:25:22.336133" level="INFO">${result} = ((1, 'John Doe', 'Laptop', 1),)</msg>
+<var>${result}</var>
+<arg>SELECT * FROM orders WHERE customer_name='John Doe'</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.315261" elapsed="0.020960"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-03-05T15:25:22.337367" level="INFO">Length is 1.</msg>
+<arg>${result}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.336940" elapsed="0.000578"/>
+</kw>
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2025-03-05T15:25:22.338105" elapsed="0.000676"/>
+</kw>
+<status status="PASS" start="2025-03-05T15:25:22.222645" elapsed="0.116732"/>
+</test>
+<status status="PASS" start="2025-03-05T15:25:22.167895" elapsed="0.175480"/>
+</suite>
+<suite id="s1-s3" name="Web Tests" source="C:\robot-demo\tests\web_tests.robot">
+<test id="s1-s3-t1" name="Login And Add to Cart" line="11">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-05T15:25:23.135205" level="INFO">Opening browser 'Chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-05T15:25:23.134752" elapsed="7.059528"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-05T15:25:30.222826" level="INFO">Typing text 'standard_user' into text field 'id=user-name'.</msg>
+<arg>id=user-name</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-05T15:25:30.221721" elapsed="1.099009"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-05T15:25:31.324066" level="INFO">Typing text 'secret_sauce' into text field 'id=password'.</msg>
+<arg>id=password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-05T15:25:31.323620" elapsed="0.223266"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-05T15:25:31.548711" level="INFO">Clicking button 'id=login-button'.</msg>
+<arg>id=login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-05T15:25:31.548380" elapsed="0.671135"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Products</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-03-05T15:25:32.222015" elapsed="0.028151"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-03-05T15:25:32.250914" level="INFO">Clicking button 'xpath=//button[contains(text(),'Add to cart')]'.</msg>
+<arg>xpath=//button[contains(text(),'Add to cart')]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-05T15:25:32.250605" elapsed="0.225348"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-05T15:25:32.478210" level="INFO">Clicking element 'xpath=//a[@class='shopping_cart_link']'.</msg>
+<arg>xpath=//a[@class='shopping_cart_link']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-05T15:25:32.477900" elapsed="0.647397"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-03-05T15:25:33.164591" level="INFO">Current page contains text 'Your Cart'.</msg>
+<arg>Your Cart</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-03-05T15:25:33.139874" elapsed="0.024868"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-03-05T15:25:33.165182" elapsed="2.399149"/>
+</kw>
+<status status="PASS" start="2025-03-05T15:25:23.133714" elapsed="12.432773"/>
+</test>
+<status status="PASS" start="2025-03-05T15:25:22.346549" elapsed="13.227236"/>
+</suite>
+<status status="PASS" start="2025-03-05T15:25:20.804418" elapsed="14.778884"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="3" fail="0" skip="0">Tests</stat>
+<stat name="Api Tests" id="s1-s1" pass="1" fail="0" skip="0">Tests.Api Tests</stat>
+<stat name="Db Tests" id="s1-s2" pass="1" fail="0" skip="0">Tests.Db Tests</stat>
+<stat name="Web Tests" id="s1-s3" pass="1" fail="0" skip="0">Tests.Web Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
